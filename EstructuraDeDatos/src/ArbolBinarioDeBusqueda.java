@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArbolBinarioDeBusqueda <T> {
+public class ArbolBinarioDeBusqueda<T> {
     private int grado = 2;
     private Nodo<T> raiz;
 
@@ -69,18 +69,27 @@ public class ArbolBinarioDeBusqueda <T> {
             }
 
     public Boolean isArbolCompleto(){
+        if (raiz == null) {
+            return true;
+        }
         int profundidad = encontrarProfundidad(raiz);
         return esCompleto(raiz, 0, profundidad);
     }
     private int encontrarProfundidad(Nodo<T> nodo) {
         int profundidad = 0;
-        while (nodo != null) {
-            profundidad++;
-            nodo = nodo.menor;
+        if (nodo == null) {
+            return profundidad;
         }
-        return profundidad;
-
+        int profundiadIzq= encontrarProfundidad(nodo.menor);
+        int profundiadDer= encontrarProfundidad(nodo.mayor);
+        if (profundiadIzq > profundiadDer) {
+            return profundiadIzq;
+        }
+        else{
+            return profundiadDer;
+        }
     }
+
     private Boolean esCompleto(Nodo<T> nodo, int Nivel, int profundidad) {
         if (nodo == null) {
             return true;
@@ -90,6 +99,40 @@ public class ArbolBinarioDeBusqueda <T> {
         }
 
         return esCompleto(nodo.menor, Nivel + 1, profundidad) && esCompleto(nodo.mayor, Nivel + 1, profundidad);
+    }
+
+
+
+    public List<T> getCamino(T valorBuscado) {
+        List<T> camino = new ArrayList<>();
+        if (raiz== null){
+            return camino;
+        }
+        else{
+            buscarCaminoRecursivo(raiz, valorBuscado, camino);
+
+            return camino;
+        }
+    }
+
+    private boolean buscarCaminoRecursivo(Nodo<T> nodoActual, T valorBuscado, List camino){
+
+        if (nodoActual == null) {
+            return false;
+        }
+        camino.add(nodoActual.valor);
+        if(valorBuscado == nodoActual.valor){
+            return true;
+        }
+        if ((int) valorBuscado > (int) nodoActual.valor) {
+            return buscarCaminoRecursivo(nodoActual.mayor, valorBuscado, camino);
+        }
+
+        else {
+            return buscarCaminoRecursivo(nodoActual.menor, valorBuscado, camino);
+        }
+
+
     }
 
 

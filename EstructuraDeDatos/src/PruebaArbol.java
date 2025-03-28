@@ -41,6 +41,8 @@ public class PruebaArbol {
         System.out.println();
 
         System.out.println("Grado del árbol: " + arbol.getGrado());
+        System.out.println("Camino:" + arbol.getCamino(11));
+
 
 
 
