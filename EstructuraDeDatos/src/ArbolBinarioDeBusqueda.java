@@ -100,6 +100,19 @@ public class ArbolBinarioDeBusqueda<T> {
 
         return esCompleto(nodo.menor, Nivel + 1, profundidad) && esCompleto(nodo.mayor, Nivel + 1, profundidad);
     }
+    public List<T> getListaOrdenCentral() {
+        List<T> lista = new ArrayList<>();
+        getListaOrdenCentralRecursiva(raiz, lista);
+        return lista;
+    }
+    private void getListaOrdenCentralRecursiva(Nodo<T> nodo, List<T> lista) {
+        if (nodo == null) {
+            return;
+        }
+        getListaOrdenCentralRecursiva(nodo.menor, lista);
+        lista.add(nodo.valor);
+        getListaOrdenCentralRecursiva(nodo.mayor, lista);
+    }
 
 
 
@@ -194,17 +207,10 @@ public class ArbolBinarioDeBusqueda<T> {
             imprimirEnOrdenRecursivo(nodo.mayor);
         }
     }
-    public int getSuma() {
-        return getSumaRecursiva(raiz);
+    public Nodo<T> getRaiz() {
+        return raiz;
     }
-    private int getSumaRecursiva(Nodo<T> nodo) {
-        if (nodo == null) {
-            return 0;
-        }
-        else{
-            return (int) nodo.valor + getSumaRecursiva(nodo.mayor) + getSumaRecursiva(nodo.menor);
-        }
-    }
+
 
 
 
