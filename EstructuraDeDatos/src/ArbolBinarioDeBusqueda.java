@@ -194,17 +194,10 @@ public class ArbolBinarioDeBusqueda<T> {
             imprimirEnOrdenRecursivo(nodo.mayor);
         }
     }
-    public int getSuma() {
-        return getSumaRecursiva(raiz);
+    public Nodo<T> getRaiz() {
+        return raiz;
     }
-    private int getSumaRecursiva(Nodo<T> nodo) {
-        if (nodo == null) {
-            return 0;
-        }
-        else{
-            return (int) nodo.valor + getSumaRecursiva(nodo.mayor) + getSumaRecursiva(nodo.menor);
-        }
-    }
+
 
 
 

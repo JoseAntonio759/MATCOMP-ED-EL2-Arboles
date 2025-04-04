@@ -28,7 +28,6 @@ public class PruebaArbol {
 
         System.out.println("¿El árbol es completo? " + arbol.isArbolCompleto());
 
-        System.out.println("Suma de los valores del árbol: " + arbol.getSuma());
 
         ArbolBinarioDeBusqueda<Integer> subArbolIzquierdo = arbol.getSubArbolIzquierda();
         System.out.println("Subárbol izquierdo en orden:");
