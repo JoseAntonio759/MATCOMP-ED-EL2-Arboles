@@ -100,47 +100,36 @@ public class ArbolBinarioDeBusqueda<T> {
 
         return esCompleto(nodo.menor, Nivel + 1, profundidad) && esCompleto(nodo.mayor, Nivel + 1, profundidad);
     }
-    public List<T> getListaOrdenCentral() {
-        List<T> lista = new ArrayList<>();
-        getListaOrdenCentralRecursiva(raiz, lista);
-        return lista;
+
+    public boolean isArbolCasiCompleto() {
+        if (raiz == null) {
+            return true;
+        }
+
+        int profundidad = encontrarProfundidad(raiz);
+        return CasiCompletoRecursivo(raiz, 1, profundidad);
     }
-    private void getListaOrdenCentralRecursiva(Nodo<T> nodo, List<T> lista) {
+
+    private boolean CasiCompletoRecursivo(Nodo<T> nodo, int nivelActual, int profundidad) {
         if (nodo == null) {
-            return;
-        }
-        getListaOrdenCentralRecursiva(nodo.menor, lista);
-        lista.add(nodo.valor);
-        getListaOrdenCentralRecursiva(nodo.mayor, lista);
-    }
-    public List<T>  getListapreOrden(){
-        List<T> lista = new ArrayList<>();
-        getListapreOrdenRecursiva(raiz, lista);
-        return lista;
-    }
-
-    private void getListapreOrdenRecursiva(Nodo<T> nodo, List<T> lista) {
-        if (nodo != null) {
-            lista.add(nodo.valor);
-            getListapreOrdenRecursiva(nodo.menor, lista);
-            getListapreOrdenRecursiva(nodo.mayor, lista);
-        }
-    }
-    public List<T>  getListapostOrden(){
-        List<T> lista = new ArrayList<>();
-        getListapostOrdenRecursiva(raiz, lista);
-        return lista;
-    }
-    private void getListapostOrdenRecursiva(Nodo<T> nodo, List<T> lista) {
-        if (nodo != null) {
-            getListapostOrdenRecursiva(nodo.menor, lista);
-            getListapostOrdenRecursiva(nodo.mayor, lista);
-            lista.add(nodo.valor);
+            return true;
         }
 
+        if (nivelActual == profundidad - 1) {
+            if (nodo.mayor != null && nodo.menor == null) {
+                return false;
+            }
+        }
+
+        if (nivelActual > profundidad) {
+            if (nodo.menor == null || nodo.mayor == null) {
+                return false;
+            }
+        }
+
+        return CasiCompletoRecursivo(nodo.menor, nivelActual + 1, profundidad) &&
+                CasiCompletoRecursivo(nodo.mayor, nivelActual + 1, profundidad);
     }
-
-
 
     public List<T> getCamino(T valorBuscado) {
         List<T> camino = new ArrayList<>();
@@ -173,15 +162,6 @@ public class ArbolBinarioDeBusqueda<T> {
 
 
     }
-
-
-
-
-
-
-
-
-
         protected Nodo<T> addRecursivo(Nodo<T> actual, T valor) {
         if (actual == null) {
             return new Nodo<>(valor);
@@ -236,18 +216,45 @@ public class ArbolBinarioDeBusqueda<T> {
     public Nodo<T> getRaiz() {
         return raiz;
     }
+    public List<T> getListaOrdenCentral() {
+        List<T> lista = new ArrayList<>();
+        getListaOrdenCentralRecursiva(raiz, lista);
+        return lista;
+    }
+    private void getListaOrdenCentralRecursiva(Nodo<T> nodo, List<T> lista) {
+        if (nodo == null) {
+            return;
+        }
+        getListaOrdenCentralRecursiva(nodo.menor, lista);
+        lista.add(nodo.valor);
+        getListaOrdenCentralRecursiva(nodo.mayor, lista);
+    }
+    public List<T>  getListapreOrden(){
+        List<T> lista = new ArrayList<>();
+        getListapreOrdenRecursiva(raiz, lista);
+        return lista;
+    }
 
+    private void getListapreOrdenRecursiva(Nodo<T> nodo, List<T> lista) {
+        if (nodo != null) {
+            lista.add(nodo.valor);
+            getListapreOrdenRecursiva(nodo.menor, lista);
+            getListapreOrdenRecursiva(nodo.mayor, lista);
+        }
+    }
+    public List<T>  getListapostOrden(){
+        List<T> lista = new ArrayList<>();
+        getListapostOrdenRecursiva(raiz, lista);
+        return lista;
+    }
+    private void getListapostOrdenRecursiva(Nodo<T> nodo, List<T> lista) {
+        if (nodo != null) {
+            getListapostOrdenRecursiva(nodo.menor, lista);
+            getListapostOrdenRecursiva(nodo.mayor, lista);
+            lista.add(nodo.valor);
+        }
 
-
-
-
-
-
-
-
-
-
-
+    }
 
 
 }
