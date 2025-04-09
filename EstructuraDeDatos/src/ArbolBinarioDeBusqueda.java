@@ -113,6 +113,32 @@ public class ArbolBinarioDeBusqueda<T> {
         lista.add(nodo.valor);
         getListaOrdenCentralRecursiva(nodo.mayor, lista);
     }
+    public List<T>  getListapreOrden(){
+        List<T> lista = new ArrayList<>();
+        getListapreOrdenRecursiva(raiz, lista);
+        return lista;
+    }
+
+    private void getListapreOrdenRecursiva(Nodo<T> nodo, List<T> lista) {
+        if (nodo != null) {
+            lista.add(nodo.valor);
+            getListapreOrdenRecursiva(nodo.menor, lista);
+            getListapreOrdenRecursiva(nodo.mayor, lista);
+        }
+    }
+    public List<T>  getListapostOrden(){
+        List<T> lista = new ArrayList<>();
+        getListapostOrdenRecursiva(raiz, lista);
+        return lista;
+    }
+    private void getListapostOrdenRecursiva(Nodo<T> nodo, List<T> lista) {
+        if (nodo != null) {
+            getListapostOrdenRecursiva(nodo.menor, lista);
+            getListapostOrdenRecursiva(nodo.mayor, lista);
+            lista.add(nodo.valor);
+        }
+
+    }
 
 
 
