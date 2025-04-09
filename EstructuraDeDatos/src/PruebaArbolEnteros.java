@@ -7,6 +7,5 @@ public class PruebaArbolEnteros {
         }
         int suma = arbol.getSuma();
         System.out.println("Suma del arbol: " + suma);
-
     }
 }
