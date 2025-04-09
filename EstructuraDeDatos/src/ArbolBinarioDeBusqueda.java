@@ -76,12 +76,11 @@ public class ArbolBinarioDeBusqueda<T> {
         return esCompleto(raiz, 0, profundidad);
     }
     private int encontrarProfundidad(Nodo<T> nodo) {
-        int profundidad = 0;
         if (nodo == null) {
-            return profundidad;
+            return 0;
         }
-        int profundiadIzq= encontrarProfundidad(nodo.menor);
-        int profundiadDer= encontrarProfundidad(nodo.mayor);
+        int profundiadIzq= encontrarProfundidad(nodo.menor) + 1;
+        int profundiadDer= encontrarProfundidad(nodo.mayor) + 1;
         if (profundiadIzq > profundiadDer) {
             return profundiadIzq;
         }
@@ -202,17 +201,6 @@ public class ArbolBinarioDeBusqueda<T> {
         return subArbolDerecha;
     }
 
-    public void imprimirEnOrden() {
-        imprimirEnOrdenRecursivo(raiz);
-    }
-
-    private void imprimirEnOrdenRecursivo(Nodo<T> nodo) {
-        if (nodo != null) {
-            imprimirEnOrdenRecursivo(nodo.menor);
-            System.out.print(nodo.valor + " ");
-            imprimirEnOrdenRecursivo(nodo.mayor);
-        }
-    }
     public Nodo<T> getRaiz() {
         return raiz;
     }

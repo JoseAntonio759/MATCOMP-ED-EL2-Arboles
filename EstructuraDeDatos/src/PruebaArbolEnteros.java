@@ -5,7 +5,8 @@ public class PruebaArbolEnteros {
         for (int i = 0; i <= 128; i++){
             arbol.addNodo(i);
         }
-        int suma = arbol.getSuma();
-        System.out.println("Suma del arbol: " + suma);
+        System.out.println("Suma del arbol: " + arbol.getSuma());
+
+
     }
 }
