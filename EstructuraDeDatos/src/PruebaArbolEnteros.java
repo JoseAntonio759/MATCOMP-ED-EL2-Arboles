@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -7,7 +8,7 @@ public class PruebaArbolEnteros {
     public static void main(String[] args) {
 
         ArbolBinarioDeBusquedaEnteros<Integer> Arbol = new ArbolBinarioDeBusquedaEnteros<>();
-        for (int i = 0; i <= 128; i++){
+        for (int i = 0; i <= 128; i++) {
             Arbol.addNodo(i);
         }
         System.out.println("Suma: " + Arbol.getSuma() + "\n");
@@ -36,7 +37,6 @@ public class PruebaArbolEnteros {
         System.out.println("Suma OrdenCentral: " + SumaOrdenCentral + "\n");
 
 
-
         System.out.println("Arbol subIzq: " + Arbol.getSubArbolIzquierda().getListaOrdenCentral());
         System.out.println("Arbol subDer: " + Arbol.getSubArbolDerecha().getListaOrdenCentral());
 
@@ -62,8 +62,6 @@ public class PruebaArbolEnteros {
         List<Integer> ListaCamino110 = Arbol.getCamino(110);
         int longitudCamino = ListaCamino110.size();
         System.out.println("Longitud del camino: " + longitudCamino + "\n");
-
-
 
     }
 }
